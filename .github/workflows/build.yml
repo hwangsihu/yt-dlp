@@ -97,7 +97,7 @@ jobs:
           fetch-depth: 0  # Needed for changelog
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.13"
       - name: Install Requirements
         run: |
           sudo apt -y install zip pandoc man sed
@@ -343,11 +343,11 @@ jobs:
         include:
         - arch: 'x64'
           runner: windows-2025
-          python_version: '3.10'
+          python_version: '3.13'
           suffix: ''
         - arch: 'x86'
           runner: windows-2025
-          python_version: '3.10'
+          python_version: '3.13'
           suffix: '_x86'
         - arch: 'arm64'
           runner: windows-11-arm

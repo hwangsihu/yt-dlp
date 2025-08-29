@@ -1,0 +1,43 @@
+name: Sync with upstream
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/yt-dlp/yt-dlp.git
+
+      - name: Fetch upstream
+        run: git fetch upstream
+
+      - name: Rebase onto upstream
+        run: |
+          git checkout master
+          if git rebase upstream/master; then
+            echo "✅ Rebase successful"
+          else
+            echo "❌ Rebase failed due to conflicts"
+            git rebase --abort
+            exit 1
+          fi
+
+      - name: Push changes
+        run: git push origin refs/heads/master:master
