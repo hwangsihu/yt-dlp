@@ -92,7 +92,7 @@ jobs:
     if: inputs.unix
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0  # Needed for changelog
       - uses: actions/setup-python@v5
@@ -132,7 +132,7 @@ jobs:
     if: inputs.linux_static
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build static executable
         env:
           channel: ${{ inputs.channel }}
@@ -174,7 +174,7 @@ jobs:
           - aarch64
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: ./repo
       - name: Virtualized Install, Prepare & Build
@@ -231,7 +231,7 @@ jobs:
     runs-on: macos-14
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # NB: Building universal2 does not work with python from actions/setup-python
 
       - name: Restore cached requirements
@@ -355,7 +355,7 @@ jobs:
           suffix: '_arm64'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python_version }}
@@ -444,7 +444,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: artifact
           pattern: build-bin-*
