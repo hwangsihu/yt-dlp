@@ -79,7 +79,7 @@ static-analysis = [
 ]
 test = [
     "pytest~=8.1",
-    "pytest-rerunfailures~=14.0",
+    "pytest-rerunfailures>=14,<17",
 ]
 pyinstaller = [
     "pyinstaller>=6.13.0",  # Windows temp cleanup fixed in 6.13.0
